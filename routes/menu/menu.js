@@ -1,8 +1,8 @@
-import express from "express";
-import { getMenu } from "../../controllers/menu/menu.js";
+import { getMenu } from '../../controllers/menu/menu.js';
 
-const router = express.Router();
-
-router.get("/api/menus", getMenu);
-
-export default router;
+export default router => {
+  router.get('/', async (req, res) => {
+    res.send('This method is not allowed.');
+  });
+  router.get('/api/menus', getMenu);
+};
