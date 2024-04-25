@@ -1,3 +1,4 @@
+import { getCategoryRowByCategoryId } from '../../repositories/category/category.js';
 import {
   createSubCategoryRow,
   deleteSubCategoryRow,
@@ -13,6 +14,11 @@ export const createSubCategory = async (req, res) => {
     const isSubCategoryExist = await getSubCategoryRowByCategoryName(
       data.sub_category_name
     );
+    const isCategoryExist = await getCategoryRowByCategoryId(data.category_id);
+
+    if (!isCategoryExist) {
+      throw new Error('Category does not exist');
+    }
 
     if (isSubCategoryExist) {
       throw new Error('Sub Category already exists, please use another name');
