@@ -13,7 +13,7 @@ if (!URL) {
 
 export const db = new Sequelize({
   dialect: 'postgres',
-  logging: true,
+  logging: false,
   database: process.env.POSTGRES_DATABASE,
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,

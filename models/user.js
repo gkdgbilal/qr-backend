@@ -1,23 +1,30 @@
 import { DataTypes, Sequelize } from 'sequelize';
 import { db } from '../connect.js';
-import SubCategory from './subCategory.js';
 
-const Category = db.define(
-  'category',
+const User = db.define(
+  'user',
   {
     id: {
-      type: Sequelize.UUID,
-      // autoIncrement: true,
+      type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV1,
     },
-    category_name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    refreshToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    roles: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+      defaultValue: ['user'],
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -35,18 +42,10 @@ const Category = db.define(
   }
 );
 
-Category.hasMany(SubCategory, {
-  foreignKey: 'category_id',
-  onDelete: 'CASCADE',
-});
-SubCategory.belongsTo(Category, {
-  foreignKey: 'category_id',
-});
-
-Category.sync({
+User.sync({
   alter: true,
 }).then(() => {
-  console.log('Category table created');
+  console.log('User table created');
 });
 
-export default Category;
+export default User;
