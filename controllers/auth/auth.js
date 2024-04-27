@@ -81,7 +81,13 @@ export const handleLogin = async (req, res) => {
     maxAge: 24 * 60 * 60 * 1000,
   });
 
-  res.json({ accessToken });
+  res.json({
+    accessToken,
+    roles,
+    username: foundUser.username,
+    id: foundUser.id,
+    refreshToken,
+  });
 };
 
 export const handleRegister = async (req, res) => {

@@ -48,6 +48,13 @@ export const getCategoryById = async (req, res) => {
 export const updateCategory = async (req, res) => {
   try {
     const { id } = req.params;
+
+    const isCategoryExist = await getCategoryRowById(id);
+
+    if (!isCategoryExist) {
+      throw new Error('Category does not exist');
+    }
+
     const data = req.body;
     const category = await updateCategoryRow(data, id);
     res.status(200).json(category);
@@ -59,6 +66,13 @@ export const updateCategory = async (req, res) => {
 export const deleteCategory = async (req, res) => {
   try {
     const { id } = req.params;
+
+    const category = await getCategoryRowById(id);
+
+    if (!category) {
+      throw new Error('Category does not exist');
+    }
+
     await deleteCategoryRow(id);
     res.status(200).json({ msg: 'Category deleted' });
   } catch (error) {
