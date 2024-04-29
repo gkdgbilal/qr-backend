@@ -7,7 +7,6 @@ import {
 } from '../../repositories/user/user.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import User from '../../models/user.js';
 
 export const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
@@ -60,7 +59,7 @@ export const handleLogin = async (req, res) => {
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: '30s' }
+    { expiresIn: '300s' }
   );
 
   const refreshToken = jwt.sign(
@@ -93,7 +92,6 @@ export const handleLogin = async (req, res) => {
 export const handleRegister = async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log('🚀 ~ handleRegister ~ req.body:', req.body);
 
     if (!username || !password)
       return res

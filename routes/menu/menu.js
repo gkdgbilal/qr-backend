@@ -8,5 +8,5 @@ export default router => {
       <h1>Welcome to the Digital QR Menu API</h1>
     `);
   });
-  router.get('/api/menus', getMenu);
+  router.get('/api/menu', getMenu);
 };

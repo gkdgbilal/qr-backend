@@ -74,7 +74,7 @@ export const deleteCategory = async (req, res) => {
     }
 
     await deleteCategoryRow(id);
-    res.status(200).json({ msg: 'Category deleted' });
+    res.status(200).json({ msg: 'Category deleted successfully' });
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }

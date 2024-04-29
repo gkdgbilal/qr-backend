@@ -5,6 +5,8 @@ import subCategoryRouter from './subCategory/subCategory.js';
 import authRouter from './auth/auth.js';
 import userRouter from './user/user.js';
 import productRouter from './product/product.js';
+import tableRouter from './table/table.js';
+import orderRouter from './order/order.js';
 
 const router = express.Router();
 
@@ -15,6 +17,8 @@ export default () => {
   authRouter(router);
   userRouter(router);
   productRouter(router);
+  tableRouter(router);
+  orderRouter(router);
 
   return router;
 };

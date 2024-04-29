@@ -10,11 +10,7 @@ import { verifyRoles } from '../../middlewares/verifyRoles.js';
 
 export default router => {
   router.post('/api/products', createProduct);
-  router.get(
-    '/api/products',
-    verifyRoles(ROLE_LIST.USER, ROLE_LIST.GUEST),
-    getProducts
-  );
+  router.get('/api/products', getProducts);
   router.get('/api/products/:id', getProductById);
   router.put('/api/products/:id', updateProduct);
   router.delete('/api/products/:id', deleteProduct);

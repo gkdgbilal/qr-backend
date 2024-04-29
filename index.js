@@ -8,6 +8,7 @@ import { logger } from './middlewares/logEvents.js';
 import { corsOptions } from './config/corsOptions.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { verifyJWT } from './middlewares/verifyJWT.js';
+import session from 'express-session';
 
 dotenv.config();
 
@@ -17,6 +18,19 @@ const PORT = process.env.PORT || 8000;
 const start = async () => {
   try {
     await connect();
+
+    app.use(
+      session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+          maxAge: 1000 * 60 * 60 * 24,
+          sameSite: 'none',
+          secure: true,
+        },
+      })
+    );
 
     app.use(logger);
 
