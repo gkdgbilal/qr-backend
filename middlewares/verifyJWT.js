@@ -10,7 +10,8 @@ export const verifyJWT = (req, res, next) => {
 
   if (
     originalUrl === '/api/auth/login' ||
-    originalUrl === '/api/auth/register'
+    originalUrl === '/api/auth/register' ||
+    originalUrl === '/'
   ) {
     return next();
   }
