@@ -7,6 +7,7 @@ import userRouter from './user/user.js';
 import productRouter from './product/product.js';
 import tableRouter from './table/table.js';
 import orderRouter from './order/order.js';
+import cartRouter from './cart/cart.js';
 
 const router = express.Router();
 
@@ -19,6 +20,7 @@ export default () => {
   productRouter(router);
   tableRouter(router);
   orderRouter(router);
+  cartRouter(router);
 
   return router;
 };
