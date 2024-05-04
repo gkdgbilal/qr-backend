@@ -26,3 +26,7 @@ export const deleteSubCategoryRow = async id => {
 export const getSubCategoryRowByCategoryName = async name => {
   return await SubCategory.findOne({ where: { sub_category_name: name } });
 };
+
+export const getSubCategoryRowByCategoryId = async id => {
+  return await SubCategory.findAll({ where: { category_id: id } });
+};

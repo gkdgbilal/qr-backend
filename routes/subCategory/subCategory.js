@@ -3,6 +3,7 @@ import {
   createSubCategory,
   deleteSubCategory,
   getSubCategory,
+  getSubCategoryByCategoryId,
   getSubCategoryById,
   updateSubCategory,
 } from '../../controllers/subCategory/subCategory.js';
@@ -16,7 +17,7 @@ export default router => {
   );
   router.get(
     '/api/sub-categories',
-    verifyRoles(ROLE_LIST.USER, ROLE_LIST.GUEST),
+    // verifyRoles(ROLE_LIST.USER, ROLE_LIST.GUEST),
     getSubCategory
   );
   router.get('/api/sub-categories/:id', getSubCategoryById);
@@ -26,4 +27,5 @@ export default router => {
     verifyRoles(ROLE_LIST.USER, ROLE_LIST.GUEST),
     deleteSubCategory
   );
+  router.get('/api/sub-categories/category/:id', getSubCategoryByCategoryId);
 };

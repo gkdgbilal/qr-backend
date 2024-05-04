@@ -3,6 +3,7 @@ import {
   createSubCategoryRow,
   deleteSubCategoryRow,
   getSubCategoryRow,
+  getSubCategoryRowByCategoryId,
   getSubCategoryRowByCategoryName,
   getSubCategoryRowById,
   updateSubCategoryRow,
@@ -66,6 +67,16 @@ export const deleteSubCategory = async (req, res) => {
     const { id } = req.params;
     await deleteSubCategoryRow(id);
     res.status(200).json({ msg: 'Sub Category deleted' });
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+};
+
+export const getSubCategoryByCategoryId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const subCategories = await getSubCategoryRowByCategoryId(id);
+    res.status(200).json(subCategories);
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
