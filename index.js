@@ -39,7 +39,6 @@ const start = async () => {
     app.use(express.json());
     app.use(cookieParser());
 
-    // app.use(verifyJWT);
     app.use('/', router());
 
     app.use(errorHandler);
